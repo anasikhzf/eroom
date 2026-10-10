@@ -1,69 +1,84 @@
-# CodeIgniter 4 Application Starter
+# Eroom - Ruang Kerja Kolaboratif & Kanban Board
 
-## What is CodeIgniter?
+**Eroom** adalah aplikasi web berbasis CodeIgniter 4 untuk pengelolaan proyek, tugas tim, dan ruang kerja kolaboratif dengan gaya visual **Claymorphism** serta dukungan **PWA (Progressive Web App)**.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+Aplikasi ini dirancang untuk memudahkan individu maupun tim dalam merencanakan tugas melalui papan kanban interaktif, berkomunikasi melalui obrolan grup langsung di dalam ruang kerja, serta menjaga privasi proyek dengan proteksi kata sandi.
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+---
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## 🚀 Fitur Utama
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+- **Papan Kanban Interaktif**: Susun daftar kolom dan pindahkan kartu tugas secara mudah (*drag and drop*).
+- **Detail & Lampiran Kartu**: Tambahkan deskripsi, tenggat waktu (*due date*), penanda warna label, serta berkas/gambar lampiran.
+- **Ruang Kerja Publik & Terkunci**: Buat ruang kerja terbuka (publik) atau lindungi dengan kata sandi. Pengaturan privasi ini dapat diubah kapan saja.
+- **Obrolan Grup Workspace**: Fitur chat langsung di tiap workspace dengan prompt nama tampilan saat pertama kali bergabung.
+- **Dukungan PWA (Progressive Web App)**: Dilengkapi Service Worker, Web Manifest, ikon melingkar, dan tombol instalasi langsung di antarmuka untuk pengalaman seperti aplikasi native.
+- **Desain Claymorphism & Responsif**: Tampilan 3D lembut dengan bayangan ganda (*inner & outer shadows*), tipografi Plus Jakarta Sans, ikon berbasis SVG (Lucide Icons), serta dukungan Dark Mode & Light Mode.
+- **Keamanan Terstandarisasi**: Hashing kata sandi aman (`PASSWORD_BCRYPT`), perlindungan brute-force (*rate limiting* percobaan sandi), sanitasi input, dan tombol keluar ruang dengan pencegahan *browser cache*.
+- **Optimasi SEO**: Dilengkapi meta tag lengkap, Open Graph preview, file `robots.txt`, dan dynamic XML sitemap di `/sitemap.xml`.
 
-## Installation & updates
+---
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+## 🛠️ Teknologi yang Digunakan
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+- **Backend**: PHP 8.1+ & [CodeIgniter 4](https://codeigniter.com)
+- **Database**: MySQL / MariaDB
+- **Frontend**: HTML5, Tailwind CSS, Vanilla JavaScript, Lucide Icons, Plus Jakarta Sans
+- **PWA**: Service Worker & Web App Manifest
 
-## Setup
+---
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+## 💻 Panduan Instalasi Lokal
 
-## Important Change with index.php
+### 1. Kloning Repositori
+```bash
+git clone https://github.com/anasikhzf/eroom.git
+cd eroom
+```
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+### 2. Pasang Dependensi Composer
+```bash
+composer install
+```
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+### 3. Konfigurasi Lingkungan (`.env`)
+Salin file `env` menjadi `.env`:
+```bash
+cp env .env
+```
+Sesuaikan pengaturan URL dan database pada `.env`:
+```ini
+CI_ENVIRONMENT = development
 
-**Please** read the user guide for a better explanation of how CI4 works!
+app.baseURL = 'http://localhost:8080/'
 
-## Repository Management
+database.default.hostname = localhost
+database.default.database = nama_database_anda
+database.default.username = root
+database.default.password = 
+database.default.DBDriver = MySQLi
+```
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+### 4. Jalankan Migrasi Database
+```bash
+php spark migrate
+```
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+### 5. Jalankan Server Lokal
+```bash
+php spark serve
+```
+Akses aplikasi melalui browser di `http://localhost:8080`.
 
-## Server Requirements
+---
 
-PHP version 8.2 or higher is required, with the following extensions installed:
+## 🌐 Panduan Deployment / Hosting
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+Untuk panduan upload ke cPanel atau VPS Virtualmin, silakan baca dokumentasi lengkap di [hosting.md](hosting.md).
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - The end of life date for PHP 8.1 was December 31, 2025.
-> - If you are still using below PHP 8.2, you should upgrade immediately.
-> - The end of life date for PHP 8.2 will be December 31, 2026.
+---
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+## 📄 Lisensi & Pembuat
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+- Dibuat oleh [anasikhzf](https://anasikhzf.web.app)
+- Berlisensi di bawah [MIT License](LICENSE)
